@@ -9,13 +9,13 @@ int* generateNumbers() {
     for(int i = 0; i < 1000000; i++) {
         returnArr[i] = rand();
     }    
-    return returnArr;
+    return returnArr; 
 }
-
-
 
 int main() {
     int* randNumbers = generateNumbers();
-    printf("%d \n", randNumbers[0]);
+    for(int i = 0; i < 20; i++){
+        printf("%d \n", randNumbers[i]);
+    }
     return 0;
 }
