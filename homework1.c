@@ -13,7 +13,7 @@ int* generateNumbers() {
     return returnArr; 
 }
 
-void merge(int arr[], int l, int m, int r) {
+void merge(int arr[], int l, int m, int r, bool ascending) {
     int leftPtr, rightPtr, mergePtr;
     int sizeLeft = m - l + 1;
     int sizeRight = r - m;
@@ -32,14 +32,28 @@ void merge(int arr[], int l, int m, int r) {
     mergePtr = l;
 
     while(leftPtr < sizeLeft && rightPtr < sizeRight) {
-        if(left[leftPtr] <= right[rightPtr]) {
-            arr[mergePtr] = left[leftPtr];
-            leftPtr++;
+        if(ascending) {
+            if(left[leftPtr] <= right[rightPtr]) {
+                arr[mergePtr] = left[leftPtr];
+                leftPtr++;
+            }
+            else {
+                arr[mergePtr] = right[rightPtr];
+                rightPtr++;
+            }
         }
-        else {
-            arr[mergePtr] = right[rightPtr];
-            rightPtr++;
+        else
+        {
+            if(left[leftPtr] >= right[rightPtr]) {
+                arr[mergePtr] = left[leftPtr];
+                leftPtr++;
+            }
+            else {
+                arr[mergePtr] = right[rightPtr];
+                rightPtr++;
+            }
         }
+        
         mergePtr++;
     }
 
@@ -58,26 +72,33 @@ void merge(int arr[], int l, int m, int r) {
 
 }
 
-void mergeSort(int arr[], int l, int r) {
+void mergeSort(int arr[], int l, int r, bool ascending) {
         if (l < r) 
     { 
         int m = l+(r-l)/2; 
 
-        mergeSort(arr, l, m); 
-        mergeSort(arr, m+1, r); 
+        mergeSort(arr, l, m, ascending); 
+        mergeSort(arr, m+1, r, ascending); 
   
-        merge(arr, l, m, r); 
+        merge(arr, l, m, r, ascending); 
     } 
 
 }
 
 int main() {
     int* randNumbers = generateNumbers();
+    int secondHalf[500000];
 
-    mergeSort(randNumbers, 0, 99999);
+    for(int i = 0; i < 499999; i++) {
+        secondHalf[i] = randNumbers[500000 + i];
+    }
+
+    mergeSort(randNumbers, 0, 999999, true);
+    mergeSort(secondHalf, 0, 499999, false);
 
     for(int i = 0; i < 50; i++){
         printf("%i \n", randNumbers[i]);
+        printf("%i \n", secondHalf[i]);
     }
     return 0;
 }
