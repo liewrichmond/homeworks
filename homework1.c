@@ -86,6 +86,10 @@ void mergeSort(int arr[], int l, int r, bool ascending) {
 }
 
 int main() {
+
+    clock_t t;
+    t = clock();
+
     int* randNumbers = generateNumbers();
     int secondHalf[500000];
 
@@ -96,9 +100,13 @@ int main() {
     mergeSort(randNumbers, 0, 999999, true);
     mergeSort(secondHalf, 0, 499999, false);
 
-    for(int i = 0; i < 50; i++){
-        printf("%i \n", randNumbers[i]);
-        printf("%i \n", secondHalf[i]);
-    }
+    // for(int i = 0; i < 50; i++){
+    //     printf("%i \n", randNumbers[i]);
+    //     printf("%i \n", secondHalf[i]);
+    // }
+
+    t = clock() - t;
+    double exec_time = ((double) t)/ CLOCKS_PER_SEC;
+    printf("Execution Time: %f\n", exec_time);
     return 0;
 }
