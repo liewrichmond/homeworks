@@ -100,20 +100,20 @@ int main() {
     mergeSort(randNumbers, 0, 999999, true);
     mergeSort(secondHalf, 0, 499999, false);
 
-    printf("Frist 25 ascending sorted Numbers: ");
-    for(int i = 0; i < 25; i++){
-        printf("%i, ", randNumbers[i]);
-    }
-    printf("\n");
+    // printf("Frist 25 ascending sorted Numbers: ");
+    // for(int i = 0; i < 25; i++){
+    //     printf("%i, ", randNumbers[i]);
+    // }
+    // printf("\n");
     
-    printf("Frist 25 descending sorted Numbers: ");
-    for(int i = 0; i < 25; i++){
-        printf("%i, ", secondHalf[i]);
-    }
-    printf("\n");
+    // printf("Frist 25 descending sorted Numbers: ");
+    // for(int i = 0; i < 25; i++){
+    //     printf("%i, ", secondHalf[i]);
+    // }
+    // printf("\n");
 
-    // t = clock() - t;
-    // double exec_time = ((double) t)/ CLOCKS_PER_SEC;
-    // printf("Execution Time: %f\n", exec_time);
+    t = clock() - t;
+    double exec_time = ((double) t)/ CLOCKS_PER_SEC;
+    printf("Execution Time: %f\n", exec_time);
     return 0;
 }
